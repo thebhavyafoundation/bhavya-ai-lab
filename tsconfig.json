@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "jsxImportSource": "astro",
+    "allowJs": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@lib/*": ["src/lib/*"],
+      "@styles/*": ["src/styles/*"]
+    },
+    "types": ["astro/client"]
+  },
+  "include": [".astro/types.d.ts", "src/**/*", "astro.config.mjs"],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "00-governance",
+    "01-context",
+    "02-product",
+    "03-design",
+    "04-architecture",
+    "05-implementation",
+    "06-content",
+    "07-quality",
+    "08-releases",
+    "09-research",
+    "10-experiments"
+  ]
+}
