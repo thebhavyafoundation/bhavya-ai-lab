@@ -1,0 +1,18 @@
+---
+interface Props {
+  label: string;
+  tone?: 'neutral' | 'accent' | 'success' | 'warning' | 'info';
+  class?: string;
+}
+const { label, tone = 'neutral', class: className = '' } = Astro.props;
+const tones = {
+  neutral: 'bg-bg-alt text-ink-secondary border-border',
+  accent: 'bg-accent-subtle text-accent border-accent/20',
+  success: 'bg-green-50 text-status-success border-green-200',
+  warning: 'bg-amber-50 text-status-warning border-amber-200',
+  info: 'bg-slate-100 text-status-info border-slate-200',
+};
+---
+<span class={`inline-flex items-center rounded-sm border px-2 py-0.5 text-meta font-medium uppercase tracking-wide ${tones[tone]} ${className}`}>
+  {label}
+</span>
