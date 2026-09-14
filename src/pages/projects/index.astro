@@ -1,0 +1,48 @@
+---
+import { safeCollection } from '../../lib/collections';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/layout/Container.astro';
+import ProjectCard from '../../components/cards/ProjectCard.astro';
+import Button from '../../components/ui/Button.astro';
+
+const projects = (await safeCollection('projects', ({ data }) => data.status === 'published')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+<BaseLayout
+  title="Projects"
+  description="Real things built by Bhavya AI Lab. Portfolio items are published only with evidence."
+>
+  <Container class="py-14">
+    <p class="text-meta uppercase tracking-wide text-ink-muted mb-3">Portfolio</p>
+    <h1 class="text-h1 mb-2">Projects</h1>
+    <p class="text-ink-secondary mb-10 max-w-2xl">
+      Real things built. Each entry includes problem, approach, technology, result, and lessons.
+    </p>
+    {projects.length === 0 ? (
+      <div class="rounded-lg border border-border bg-surface p-8 sm:p-12">
+        <p class="font-mono text-meta text-accent mb-3">Status · Early lab</p>
+        <h2 class="text-h2 mb-3">Projects are being documented</h2>
+        <p class="text-ink-secondary max-w-xl mb-6 leading-relaxed">
+          We publish projects only when there is real work to show. Empty is preferred to fabricated portfolio items.
+        </p>
+        <Button href="/experiments" variant="secondary">View experiments</Button>
+      </div>
+    ) : (
+      <ul class="grid gap-6 sm:grid-cols-2">
+        {projects.map((p) => (
+          <li>
+            <ProjectCard
+              title={p.data.title}
+              description={p.data.description}
+              href={`/projects/${p.slug}`}
+              honestyLabel={(p.data.honestyLabel || 'real').replace(/^\w/, (c) => c.toUpperCase())}
+              tags={p.data.tags}
+              date={p.data.date?.toLocaleDateString('en-IN', { year: 'numeric', month: 'short' })}
+            />
+          </li>
+        ))}
+      </ul>
+    )}
+  </Container>
+</BaseLayout>

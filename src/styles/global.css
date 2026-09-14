@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased text-ink bg-bg;
+  }
+  body {
+    @apply font-sans text-body;
+  }
+  h1 { @apply text-h1; }
+  h2 { @apply text-h2; }
+  h3 { @apply text-h3; }
+  a {
+    @apply text-accent underline-offset-2;
+  }
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-accent;
+  }
+}
+
+@layer components {
+  .prose-lab {
+    @apply text-ink-secondary leading-relaxed max-w-content;
+  }
+  .prose-lab h2 {
+    @apply text-h2 text-ink mt-8 mb-3;
+  }
+  .prose-lab h3 {
+    @apply text-h3 text-ink mt-6 mb-2;
+  }
+  .prose-lab p {
+    @apply mb-4;
+  }
+  .prose-lab ul {
+    @apply list-disc pl-5 mb-4 space-y-1;
+  }
+  .prose-lab ol {
+    @apply list-decimal pl-5 mb-4 space-y-1;
+  }
+  .prose-lab strong {
+    @apply text-ink font-semibold;
+  }
+  .prose-lab a {
+    @apply text-accent underline;
+  }
+  .prose-lab table {
+    @apply w-full text-small mb-4 border-collapse;
+  }
+  .prose-lab th,
+  .prose-lab td {
+    @apply border border-border px-3 py-2 text-left;
+  }
+  .prose-lab th {
+    @apply bg-bg-alt font-medium text-ink;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
