@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/navigation/SiteHeader.astro';
+import SiteFooter from '../components/navigation/SiteFooter.astro';
+import { resolveSeo, type SeoProps } from '../lib/seo';
+
+interface Props extends SeoProps {}
+const seo = resolveSeo(Astro.props);
+const canonicalURL = seo.canonical
+  ? new URL(seo.canonical, Astro.site)
+  : new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(seo.ogImage || '/og-default.svg', Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    {seo.noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:site_name" content={seo.siteName} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:text-white focus:px-3 focus:py-2 focus:rounded-md"
+    >
+      Skip to main content
+    </a>
+    <SiteHeader />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

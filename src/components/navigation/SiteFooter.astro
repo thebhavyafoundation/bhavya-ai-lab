@@ -1,0 +1,26 @@
+---
+import Container from '../layout/Container.astro';
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-border mt-16 bg-bg-alt">
+  <Container class="py-10">
+    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8">
+      <div>
+        <p class="font-semibold text-ink">Bhavya AI Lab</p>
+        <p class="mt-1 text-small text-ink-secondary max-w-xs">
+          Learn AI. Build with AI. Experiment with AI. Apply AI to the real world — from Himachal Pradesh.
+        </p>
+      </div>
+      <nav aria-label="Footer" class="flex flex-wrap gap-x-6 gap-y-2 text-small">
+        <a href="/about" class="text-ink-secondary no-underline hover:text-accent">About</a>
+        <a href="/projects" class="text-ink-secondary no-underline hover:text-accent">Projects</a>
+        <a href="/learn" class="text-ink-secondary no-underline hover:text-accent">Learn</a>
+        <a href="/blog" class="text-ink-secondary no-underline hover:text-accent">Blog</a>
+        <a href="/join" class="text-ink-secondary no-underline hover:text-accent">Join</a>
+      </nav>
+    </div>
+    <p class="mt-8 text-meta text-ink-muted">
+      © {year} Bhavya AI Lab. Built with care. No fabricated claims.
+    </p>
+  </Container>
+</footer>
